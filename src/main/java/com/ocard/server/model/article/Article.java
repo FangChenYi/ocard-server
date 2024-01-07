@@ -3,11 +3,14 @@ package com.ocard.server.model.article;
 import com.ocard.server.model.category.Subcategory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
 
+@Getter
+@Setter
 @Entity
 @Table(name = "article")
 public class Article {
@@ -16,11 +19,11 @@ public class Article {
     @Column(name = "article_id")
     private int articleId;
 
-    @NotNull
+    @NotBlank
     @Column(name = "title")
     private String title;
 
-    @NotNull
+    @NotBlank
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
