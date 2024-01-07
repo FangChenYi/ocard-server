@@ -20,6 +20,7 @@ public class Subcategory {
     @Column(name = "subcategory_name")
     private String subcategoryName;
 
-    @Column(name = "category_id")
-    private int categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
