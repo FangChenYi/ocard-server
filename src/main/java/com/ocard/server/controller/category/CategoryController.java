@@ -19,17 +19,17 @@ public class CategoryController {
     }
 
     @GetMapping("/category/{categoryId}")
-    public Object getById(@PathVariable Integer categoryId) {
+    public Category getCategoryById(@PathVariable Integer categoryId) {
         return categoryService.getCategoryById(categoryId);
     }
 
     @PostMapping("/category")
-    public Object createCategory(@RequestBody @Valid Category category) {
+    public Category createCategory(@RequestBody @Valid Category category) {
         return categoryService.createCategory(category);
     }
 
     @PutMapping("/category/{categoryId}")
-    public Object updateCategory(@PathVariable Integer categoryId,
+    public Category updateCategory(@PathVariable Integer categoryId,
                       @RequestBody @Valid Category category) {
         return categoryService.updateCategory(categoryId, category);
     }
