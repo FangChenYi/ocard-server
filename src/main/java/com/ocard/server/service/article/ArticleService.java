@@ -7,11 +7,11 @@ import java.util.List;
 public interface ArticleService {
     List<Article> getAllArticle();
 
-    Object getArticleById(Integer articleId);
+    Article getArticleById(Integer articleId);
 
     Article createArticle(Article article);
 
-    Object updateArticle(Integer articleId, Article article);
+    Article updateArticle(Integer articleId, Article article);
 
     String deleteArticle(Integer articleId);
 }
