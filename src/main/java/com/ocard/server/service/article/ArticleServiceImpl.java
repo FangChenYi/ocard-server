@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -20,12 +21,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Object getArticleById(Integer articleId) {
+    public Article getArticleById(Integer articleId) {
         Optional<Article> articleResponse = articleRepository.findById(articleId);
         if (articleResponse.isPresent()) {
             return articleResponse.get();
         } else {
-            return "Get method failed: ArticleId not found.";
+            throw new NoSuchElementException("Get method failed: ArticleId not found.");
         }
     }
 
@@ -35,13 +36,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Object updateArticle(Integer articleId, Article article) {
+    public Article updateArticle(Integer articleId, Article article) {
         Optional<Article> articleExisting = articleRepository.findById(articleId);
         if (articleExisting.isPresent()) {
             article.setArticleId(articleId);
             return articleRepository.save(article);
         } else {
-            return "Update method failed: ArticleId not found.";
+            throw new NoSuchElementException("Update method failed: ArticleId not found.");
         }
     }
 
@@ -52,7 +53,7 @@ public class ArticleServiceImpl implements ArticleService {
             articleRepository.deleteById(articleId);
             return "Delete articleId success.";
         } else {
-            return "Update method failed: ArticleId not found.";
+            throw new NoSuchElementException("Delete method failed: ArticleId not found.");
         }
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -20,12 +21,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Object getCategoryById(Integer categoryId) {
+    public Category getCategoryById(Integer categoryId) {
         Optional<Category> categoryResponse = categoryRepository.findById(categoryId);
         if (categoryResponse.isPresent()) {
             return categoryResponse.get();
         } else {
-            return "Get method failed: CategoryId not found.";
+            throw new NoSuchElementException("Get method failed: CategoryId not found.");
         }
     }
 
@@ -35,14 +36,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Object updateCategory(Integer categoryId,
+    public Category updateCategory(Integer categoryId,
                                  Category category) {
         Optional<Category> categoryExisting = categoryRepository.findById(categoryId);
         if (categoryExisting.isPresent()) {
             category.setCategoryId(categoryId);
             return categoryRepository.save(category);
         } else {
-            return "Update method failed: CategoryId not found.";
+            throw new NoSuchElementException("Update method failed: CategoryId not found.");
         }
     }
 
