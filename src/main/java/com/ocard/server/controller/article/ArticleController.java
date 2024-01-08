@@ -20,17 +20,17 @@ public class ArticleController {
     }
 
     @GetMapping("/article/{articleId}")
-    public Object getArticleById(@PathVariable Integer articleId) {
+    public Article getArticleById(@PathVariable Integer articleId) {
         return articleService.getArticleById(articleId);
     }
 
     @PostMapping("/article")
-    public Object createArticle(@RequestBody @Valid Article article){
+    public Article createArticle(@RequestBody @Valid Article article){
         return articleService.createArticle(article);
     }
 
     @PutMapping("/article/{articleId}")
-    public Object updateArticle(@PathVariable Integer articleId,
+    public Article updateArticle(@PathVariable Integer articleId,
                                  @RequestBody @Valid Article article) {
         return articleService.updateArticle(articleId, article);
     }
