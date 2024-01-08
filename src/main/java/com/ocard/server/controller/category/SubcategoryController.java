@@ -19,18 +19,18 @@ public class SubcategoryController {
     }
 
     @GetMapping("/subcategory/{subcategoryId}")
-    public Object getSubcategoryById(@PathVariable Integer subcategoryId) {
+    public Subcategory getSubcategoryById(@PathVariable Integer subcategoryId) {
         return subcategoryService.getSubcategoryById(subcategoryId);
     }
 
     @PostMapping("/subcategory")
-    public Object createSubcategory(@RequestBody @Valid Subcategory subcategory) {
+    public Subcategory createSubcategory(@RequestBody @Valid Subcategory subcategory) {
         return subcategoryService.createSubcategory(subcategory);
     }
 
     @PutMapping("/subcategory/{subcategoryId}")
-    public Object updateSubcategory(@PathVariable Integer subcategoryId,
-                                 @RequestBody @Valid Subcategory subcategory) {
+    public Subcategory updateSubcategory(@PathVariable Integer subcategoryId,
+                                         @RequestBody @Valid Subcategory subcategory) {
         return subcategoryService.updateSubcategory(subcategoryId, subcategory);
     }
 
