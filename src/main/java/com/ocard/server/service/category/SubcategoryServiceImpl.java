@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -19,12 +20,12 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
     @Override
-    public Object getSubcategoryById(Integer subcategoryId) {
+    public Subcategory getSubcategoryById(Integer subcategoryId) {
         Optional<Subcategory> subcategoryResponse = subcategoryRepository.findById(subcategoryId);
         if (subcategoryResponse.isPresent()) {
             return subcategoryResponse.get();
         } else {
-            return "Get method failed: SubcategoryId not found.";
+            throw new NoSuchElementException("Get method failed: SubcategoryId not found.");
         }
     }
 
@@ -34,13 +35,13 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
     @Override
-    public Object updateSubcategory(Integer subcategoryId, Subcategory subcategory) {
+    public Subcategory updateSubcategory(Integer subcategoryId, Subcategory subcategory) {
         Optional<Subcategory> subcategoryExisting = subcategoryRepository.findById(subcategoryId);
         if (subcategoryExisting.isPresent()) {
             subcategory.setSubcategoryId(subcategoryId);
             return subcategoryRepository.save(subcategory);
         } else {
-            return "Update method failed: SubcategoryId not found.";
+            throw new NoSuchElementException("Update method failed: SubcategoryId not found.");
         }
     }
 
@@ -51,7 +52,7 @@ public class SubcategoryServiceImpl implements SubcategoryService {
             subcategoryRepository.deleteById(subcategoryId);
             return "Delete categoryId success.";
         } else {
-            return "Delete method failed: SubcategoryId not found.";
+            throw new NoSuchElementException("Delete method failed: SubcategoryId not found.");
         }
     }
 }

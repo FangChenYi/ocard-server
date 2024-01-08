@@ -7,11 +7,11 @@ import java.util.List;
 public interface SubcategoryService {
     List<Subcategory> getAllSubcategories();
 
-    Object getSubcategoryById(Integer SubcategoryId);
+    Subcategory getSubcategoryById(Integer SubcategoryId);
 
     Subcategory createSubcategory(Subcategory subcategory);
 
-    Object updateSubcategory(Integer SubcategoryId, Subcategory subcategory);
+    Subcategory updateSubcategory(Integer SubcategoryId, Subcategory subcategory);
 
     String deleteSubcategory(Integer SubcategoryId);
 }
