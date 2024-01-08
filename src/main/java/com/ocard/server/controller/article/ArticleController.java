@@ -15,7 +15,7 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping("/article")
-    public List<Article> getAllArticle(){
+    public List<Article> getAllArticles() {
         return articleService.getAllArticle();
     }
 
@@ -25,7 +25,7 @@ public class ArticleController {
     }
 
     @PostMapping("/article")
-    public Article createArticle(@RequestBody @Valid Article article){
+    public Article createArticle(@RequestBody @Valid Article article) {
         return articleService.createArticle(article);
     }
 
