@@ -54,7 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
             categoryRepository.deleteById(categoryId);
             return "Delete categoryId success.";
         } else {
-            return "Delete method failed: CategoryId not found.";
+            throw new NoSuchElementException("Delete method failed: CategoryId not found.");
         }
     }
 }
