@@ -1,6 +1,7 @@
 package com.ocard.server.controller.category;
 
 import com.ocard.server.model.category.Category;
+import com.ocard.server.model.category.CategoryDTO;
 import com.ocard.server.service.category.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,14 @@ public class CategoryController {
     }
 
     @PostMapping("/category")
-    public Category createCategory(@RequestBody @Valid Category category) {
-        return categoryService.createCategory(category);
+    public Category createCategory(@RequestBody @Valid CategoryDTO categoryDTO) {
+        return categoryService.createCategory(categoryDTO);
     }
 
     @PutMapping("/category/{categoryId}")
     public Category updateCategory(@PathVariable Integer categoryId,
-                      @RequestBody @Valid Category category) {
-        return categoryService.updateCategory(categoryId, category);
+                      @RequestBody @Valid CategoryDTO categoryDTO) {
+        return categoryService.updateCategory(categoryId, categoryDTO);
     }
 
     @DeleteMapping("/category/{categoryId}")
