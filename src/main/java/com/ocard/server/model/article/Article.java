@@ -1,13 +1,13 @@
 package com.ocard.server.model.article;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ocard.server.model.category.Subcategory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -36,11 +36,13 @@ public class Article {
     @Column(name = "bookmark_count")
     private int bookmarkCount;
 
-    @Column(name = "date_published", nullable = false)
-    private Date datePublished;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "date_published")
+    private LocalDateTime datePublished;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "date_updated")
-    private Date dateUpdated;
+    private LocalDateTime dateUpdated;
 
     @ManyToOne
     @JoinColumn(name = "subcategory_id")

@@ -1,6 +1,7 @@
 package com.ocard.server.controller.category;
 
 import com.ocard.server.model.category.Subcategory;
+import com.ocard.server.model.category.SubcategoryDTO;
 import com.ocard.server.service.category.SubcategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,14 @@ public class SubcategoryController {
     }
 
     @PostMapping("/subcategory")
-    public Subcategory createSubcategory(@RequestBody @Valid Subcategory subcategory) {
-        return subcategoryService.createSubcategory(subcategory);
+    public Subcategory createSubcategory(@RequestBody @Valid SubcategoryDTO subcategoryDTO) {
+        return subcategoryService.createSubcategory(subcategoryDTO);
     }
 
     @PutMapping("/subcategory/{subcategoryId}")
     public Subcategory updateSubcategory(@PathVariable Integer subcategoryId,
-                                         @RequestBody @Valid Subcategory subcategory) {
-        return subcategoryService.updateSubcategory(subcategoryId, subcategory);
+                                         @RequestBody @Valid SubcategoryDTO subcategoryDTO) {
+        return subcategoryService.updateSubcategory(subcategoryId, subcategoryDTO);
     }
 
     @DeleteMapping("/subcategory/{subcategoryId}")

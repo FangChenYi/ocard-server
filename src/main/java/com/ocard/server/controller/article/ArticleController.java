@@ -1,6 +1,7 @@
 package com.ocard.server.controller.article;
 
 import com.ocard.server.model.article.Article;
+import com.ocard.server.model.article.ArticleDTO;
 import com.ocard.server.service.article.ArticleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,14 @@ public class ArticleController {
     }
 
     @PostMapping("/article")
-    public Article createArticle(@RequestBody @Valid Article article) {
-        return articleService.createArticle(article);
+    public Article createArticle(@RequestBody @Valid ArticleDTO articleDTO) {
+        return articleService.createArticle(articleDTO);
     }
 
     @PutMapping("/article/{articleId}")
     public Article updateArticle(@PathVariable Integer articleId,
-                                 @RequestBody @Valid Article article) {
-        return articleService.updateArticle(articleId, article);
+                                 @RequestBody @Valid ArticleDTO articleDTO) {
+        return articleService.updateArticle(articleId, articleDTO);
     }
 
     @DeleteMapping("/article/{articleId}")
