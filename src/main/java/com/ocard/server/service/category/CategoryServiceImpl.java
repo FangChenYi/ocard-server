@@ -1,6 +1,8 @@
 package com.ocard.server.service.category;
 
+import com.ocard.server.mapper.category.CategoryMapper;
 import com.ocard.server.model.category.Category;
+import com.ocard.server.model.category.CategoryDTO;
 import com.ocard.server.repository.category.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private CategoryMapper categoryMapper;
 
     @Override
     public List<Category> getAllCategories() {
@@ -31,15 +35,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category createCategory(Category category) {
+    public Category createCategory(CategoryDTO categoryDTO) {
+        Category category=categoryMapper.CategoryDTOtoCategory(categoryDTO);
         return categoryRepository.save(category);
     }
 
     @Override
     public Category updateCategory(Integer categoryId,
-                                 Category category) {
+                                   CategoryDTO categoryDTO) {
         Optional<Category> categoryExisting = categoryRepository.findById(categoryId);
         if (categoryExisting.isPresent()) {
+            Category category= categoryMapper.CategoryDTOtoCategory(categoryDTO);
             category.setCategoryId(categoryId);
             return categoryRepository.save(category);
         } else {

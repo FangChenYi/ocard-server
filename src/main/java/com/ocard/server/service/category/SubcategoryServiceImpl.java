@@ -1,6 +1,8 @@
 package com.ocard.server.service.category;
 
+import com.ocard.server.mapper.category.CategoryMapper;
 import com.ocard.server.model.category.Subcategory;
+import com.ocard.server.model.category.SubcategoryDTO;
 import com.ocard.server.repository.category.SubcategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ import java.util.Optional;
 public class SubcategoryServiceImpl implements SubcategoryService {
     @Autowired
     private SubcategoryRepository subcategoryRepository;
+
+    @Autowired
+    private CategoryMapper categoryMapper;
 
     @Override
     public List<Subcategory> getAllSubcategories() {
@@ -30,14 +35,16 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
     @Override
-    public Subcategory createSubcategory(Subcategory subcategory) {
+    public Subcategory createSubcategory(SubcategoryDTO subcategoryDTO) {
+        Subcategory subcategory = categoryMapper.SubcategoryDTOtoSubcategory(subcategoryDTO);
         return subcategoryRepository.save(subcategory);
     }
 
     @Override
-    public Subcategory updateSubcategory(Integer subcategoryId, Subcategory subcategory) {
+    public Subcategory updateSubcategory(Integer subcategoryId, SubcategoryDTO subcategoryDTO) {
         Optional<Subcategory> subcategoryExisting = subcategoryRepository.findById(subcategoryId);
         if (subcategoryExisting.isPresent()) {
+            Subcategory subcategory = categoryMapper.SubcategoryDTOtoSubcategory(subcategoryDTO);
             subcategory.setSubcategoryId(subcategoryId);
             return subcategoryRepository.save(subcategory);
         } else {

@@ -1,4 +1,4 @@
-
+DROP TABLE article;
 CREATE TABLE article (
                          article_id INT AUTO_INCREMENT PRIMARY KEY,
                          title VARCHAR(255) NOT NULL,
@@ -6,8 +6,8 @@ CREATE TABLE article (
                          comment_count INT,
                          like_count INT,
                          bookmark_count INT,
-                         date_published DATE NOT NULL,
-                         date_updated DATE,
+                         date_published DATETIME NOT NULL,
+                         date_updated DATETIME,
                          subcategory_id INT NOT NULL,
                          FOREIGN KEY (subcategory_id) REFERENCES subcategory(subcategory_id)
 );

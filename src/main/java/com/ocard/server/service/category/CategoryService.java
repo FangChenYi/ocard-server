@@ -1,6 +1,7 @@
 package com.ocard.server.service.category;
 
 import com.ocard.server.model.category.Category;
+import com.ocard.server.model.category.CategoryDTO;
 
 import java.util.List;
 
@@ -9,9 +10,9 @@ public interface CategoryService {
 
     Category getCategoryById(Integer categoryId);
 
-    Category createCategory(Category category);
+    Category createCategory(CategoryDTO categoryDTO);
 
-    Category updateCategory(Integer categoryId, Category category);
+    Category updateCategory(Integer categoryId, CategoryDTO categoryDTO);
 
     String deleteCategory(Integer categoryId);
 }
