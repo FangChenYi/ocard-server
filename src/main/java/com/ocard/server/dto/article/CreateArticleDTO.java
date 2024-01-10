@@ -1,4 +1,4 @@
-package com.ocard.server.model.article;
+package com.ocard.server.dto.article;
 
 import com.ocard.server.model.category.Subcategory;
 import jakarta.validation.constraints.NotBlank;
@@ -7,19 +7,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ArticleDTO {
+public class CreateArticleDTO {
 
     @NotBlank
     private String title;
 
     @NotBlank
     private String content;
-
-    private int commentCount;
-
-    private int likeCount;
-
-    private int bookmarkCount;
 
     private Subcategory subcategory;
 

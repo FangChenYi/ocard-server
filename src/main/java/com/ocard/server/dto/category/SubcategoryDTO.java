@@ -1,5 +1,6 @@
-package com.ocard.server.model.category;
+package com.ocard.server.dto.category;
 
+import com.ocard.server.model.category.Category;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;

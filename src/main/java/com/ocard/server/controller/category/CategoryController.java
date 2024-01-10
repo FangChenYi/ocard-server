@@ -1,7 +1,7 @@
 package com.ocard.server.controller.category;
 
 import com.ocard.server.model.category.Category;
-import com.ocard.server.model.category.CategoryDTO;
+import com.ocard.server.dto.category.CategoryDTO;
 import com.ocard.server.service.category.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
