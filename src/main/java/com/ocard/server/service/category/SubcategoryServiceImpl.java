@@ -26,13 +26,9 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
     @Override
-    public Subcategory getSubcategoryById(Integer subcategoryId) {
+    public Subcategory getSubcategoryById(Integer subcategoryId) throws NoSuchElementException {
         Optional<Subcategory> subcategoryExisting = subcategoryRepository.findById(subcategoryId);
-        if (subcategoryExisting.isPresent()) {
-            return subcategoryExisting.get();
-        } else {
-            throw new NoSuchElementException("Get method failed: SubcategoryId not found.");
-        }
+        return subcategoryExisting.get();
     }
 
     @Override
@@ -42,26 +38,19 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
     @Override
-    public Subcategory updateSubcategory(Integer subcategoryId, UpdateSubcategoryDTO updateSubcategoryDTO) {
+    public Subcategory updateSubcategory(Integer subcategoryId,
+                                         UpdateSubcategoryDTO updateSubcategoryDTO) throws NoSuchElementException {
         Optional<Subcategory> subcategoryExisting = subcategoryRepository.findById(subcategoryId);
-        if (subcategoryExisting.isPresent()) {
-            Subcategory subcategory = categoryMapper.UpdateSubcategoryDTOtoSubcategory(updateSubcategoryDTO);
-            subcategory.setCategory(subcategoryExisting.get().getCategory());
-            subcategory.setSubcategoryId(subcategoryId);
-            return subcategoryRepository.save(subcategory);
-        } else {
-            throw new NoSuchElementException("Update method failed: SubcategoryId not found.");
-        }
+        Subcategory subcategory = categoryMapper.UpdateSubcategoryDTOtoSubcategory(updateSubcategoryDTO);
+        subcategory.setCategory(subcategoryExisting.get().getCategory());
+        subcategory.setSubcategoryId(subcategoryId);
+        return subcategoryRepository.save(subcategory);
     }
 
     @Override
-    public String deleteSubcategory(Integer subcategoryId) {
+    public String deleteSubcategory(Integer subcategoryId) throws NoSuchElementException {
         Optional<Subcategory> subcategoryExisting = subcategoryRepository.findById(subcategoryId);
-        if (subcategoryExisting.isPresent()) {
-            subcategoryRepository.deleteById(subcategoryId);
-            return "Delete categoryId success.";
-        } else {
-            throw new NoSuchElementException("Delete method failed: SubcategoryId not found.");
-        }
+        subcategoryRepository.deleteById(subcategoryExisting.get().getSubcategoryId());
+        return "Delete categoryId success.";
     }
 }
