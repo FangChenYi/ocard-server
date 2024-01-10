@@ -2,7 +2,7 @@ package com.ocard.server.service.category;
 
 import com.ocard.server.mapper.category.CategoryMapper;
 import com.ocard.server.model.category.Category;
-import com.ocard.server.model.category.CategoryDTO;
+import com.ocard.server.dto.category.CategoryDTO;
 import com.ocard.server.repository.category.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

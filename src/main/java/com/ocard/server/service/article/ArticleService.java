@@ -1,7 +1,8 @@
 package com.ocard.server.service.article;
 
+import com.ocard.server.dto.article.CreateArticleDTO;
+import com.ocard.server.dto.article.UpdateArticleDTO;
 import com.ocard.server.model.article.Article;
-import com.ocard.server.model.article.ArticleDTO;
 
 import java.util.List;
 
@@ -10,9 +11,9 @@ public interface ArticleService {
 
     Article getArticleById(Integer articleId);
 
-    Article createArticle(ArticleDTO articleDTO);
+    Article createArticle(CreateArticleDTO createArticleDTO);
 
-    Article updateArticle(Integer articleId, ArticleDTO articleDTO);
+    Article updateArticle(Integer articleId, UpdateArticleDTO updateArticleDTO);
 
     String deleteArticle(Integer articleId);
 }

@@ -1,4 +1,4 @@
-package com.ocard.server.model.category;
+package com.ocard.server.dto.category;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -6,7 +6,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CategoryDTO {
+public class UpdateSubcategoryDTO {
+
     @NotBlank
-    private String categoryName;
+    private String subcategoryName;
+
 }

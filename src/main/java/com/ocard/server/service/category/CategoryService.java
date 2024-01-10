@@ -1,7 +1,7 @@
 package com.ocard.server.service.category;
 
 import com.ocard.server.model.category.Category;
-import com.ocard.server.model.category.CategoryDTO;
+import com.ocard.server.dto.category.CategoryDTO;
 
 import java.util.List;
 

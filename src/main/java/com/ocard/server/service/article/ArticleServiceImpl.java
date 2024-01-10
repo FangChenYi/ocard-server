@@ -1,8 +1,9 @@
 package com.ocard.server.service.article;
 
+import com.ocard.server.dto.article.CreateArticleDTO;
+import com.ocard.server.dto.article.UpdateArticleDTO;
 import com.ocard.server.mapper.article.ArticleMapper;
 import com.ocard.server.model.article.Article;
-import com.ocard.server.model.article.ArticleDTO;
 import com.ocard.server.repository.article.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,18 +38,19 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article createArticle(ArticleDTO articleDTO) {
-        Article article = articleMapper.articleDTOtoArticle(articleDTO);
+    public Article createArticle(CreateArticleDTO createArticleDTO) {
+        Article article = articleMapper.CreateArticleDTOtoArticle(createArticleDTO);
         article.setDatePublished(LocalDateTime.now());
         return articleRepository.save(article);
     }
 
     @Override
-    public Article updateArticle(Integer articleId, ArticleDTO articleDTO) {
+    public Article updateArticle(Integer articleId, UpdateArticleDTO updateArticleDTO) {
         Optional<Article> articleExisting = articleRepository.findById(articleId);
         if (articleExisting.isPresent()) {
-            Article article = articleMapper.articleDTOtoArticle(articleDTO);
+            Article article = articleMapper.UpdateArticleDTOtoArticle(updateArticleDTO);
             article.setArticleId(articleId);
+            article.setSubcategory(articleExisting.get().getSubcategory());
             article.setDatePublished(articleExisting.get().getDatePublished());
             article.setDateUpdated(LocalDateTime.now());
             return articleRepository.save(article);
