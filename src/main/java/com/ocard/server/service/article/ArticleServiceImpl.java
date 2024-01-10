@@ -40,7 +40,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Article createArticle(CreateArticleDTO createArticleDTO) {
         Article article = articleMapper.CreateArticleDTOtoArticle(createArticleDTO);
-        article.setDatePublished(LocalDateTime.now());
+        article.setDatePosted(LocalDateTime.now());
         return articleRepository.save(article);
     }
 
@@ -51,7 +51,7 @@ public class ArticleServiceImpl implements ArticleService {
             Article article = articleMapper.UpdateArticleDTOtoArticle(updateArticleDTO);
             article.setArticleId(articleId);
             article.setSubcategory(articleExisting.get().getSubcategory());
-            article.setDatePublished(articleExisting.get().getDatePublished());
+            article.setDatePosted(articleExisting.get().getDatePosted());
             article.setDateUpdated(LocalDateTime.now());
             return articleRepository.save(article);
         } else {

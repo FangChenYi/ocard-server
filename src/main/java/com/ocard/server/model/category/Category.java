@@ -16,6 +16,6 @@ public class Category {
     private int categoryId;
 
     @NotBlank
-    @Column(name = "category_name")
+    @Column(name = "category_name", nullable = false)
     private String categoryName;
 }

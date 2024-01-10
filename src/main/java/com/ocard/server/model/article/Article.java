@@ -20,11 +20,11 @@ public class Article {
     private int articleId;
 
     @NotBlank
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
 
     @NotBlank
-    @Column(name = "content", columnDefinition = "TEXT")
+    @Column(name = "content", columnDefinition = "TEXT", nullable = false)
     private String content;
 
     @Column(name = "comment_count")
@@ -37,8 +37,8 @@ public class Article {
     private int bookmarkCount;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Column(name = "date_published")
-    private LocalDateTime datePublished;
+    @Column(name = "date_posted", nullable = false)
+    private LocalDateTime datePosted;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "date_updated")

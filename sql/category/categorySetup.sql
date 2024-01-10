@@ -1,3 +1,6 @@
+DROP TABLE subcategory;
+DROP TABLE category;
+
 CREATE TABLE category(
                          category_id INT AUTO_INCREMENT PRIMARY KEY,
                          category_name VARCHAR(255) NOT NULL
@@ -7,7 +10,7 @@ CREATE TABLE subcategory (
                              subcategory_id INT AUTO_INCREMENT PRIMARY KEY,
                              subcategory_name VARCHAR(100) NOT NULL,
                              category_id INT NOT NULL,
-                             FOREIGN KEY (category_id) REFERENCES category(category_id)
+                             FOREIGN KEY (category_id) REFERENCES category(category_id) ON DELETE CASCADE
 );
 
 

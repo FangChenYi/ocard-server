@@ -17,10 +17,10 @@ public class Subcategory {
     private int subcategoryId;
 
     @NotBlank
-    @Column(name = "subcategory_name")
+    @Column(name = "subcategory_name", nullable = false)
     private String subcategoryName;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 }
