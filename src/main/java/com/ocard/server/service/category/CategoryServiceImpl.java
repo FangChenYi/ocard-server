@@ -26,9 +26,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategoryById(Integer categoryId) {
-        Optional<Category> categoryResponse = categoryRepository.findById(categoryId);
-        if (categoryResponse.isPresent()) {
-            return categoryResponse.get();
+        Optional<Category> categoryExisting = categoryRepository.findById(categoryId);
+        if (categoryExisting.isPresent()) {
+            return categoryExisting.get();
         } else {
             throw new NoSuchElementException("Get method failed: CategoryId not found.");
         }
