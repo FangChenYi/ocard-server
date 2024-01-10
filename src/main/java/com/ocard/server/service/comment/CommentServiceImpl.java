@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -27,13 +28,14 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment getCommentById(Integer commentId) {
+    public Comment getCommentById(Integer commentId) throws NoSuchElementException {
         Optional<Comment> commentExisting = commentRepository.findById(commentId);
         return commentExisting.get();
     }
 
     @Override
-    public Comment createComment(Integer articleId, CreateCommentDTO createCommentDTO) {
+    public Comment createComment(Integer articleId,
+                                 CreateCommentDTO createCommentDTO) {
         Comment comment = commentMapper.CreateCommentDTOtoComment(createCommentDTO);
         comment.setDatePosted(LocalDateTime.now());
         comment.setArticleId(articleId);
@@ -42,7 +44,8 @@ public class CommentServiceImpl implements CommentService {
 
 
     @Override
-    public Comment updateComment(Integer commentId, UpdateCommentDTO updateCommentDTO) {
+    public Comment updateComment(Integer commentId,
+                                 UpdateCommentDTO updateCommentDTO) throws NoSuchElementException {
         Optional<Comment> commentExisting = commentRepository.findById(commentId);
         Comment comment = commentMapper.UpdateCommentDTOtoComment(updateCommentDTO);
         comment.setCommentId(commentId);
@@ -53,8 +56,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public String deleteComment(Integer commentId) {
-        commentRepository.deleteById(commentId);
+    public String deleteComment(Integer commentId) throws NoSuchElementException {
+        Optional<Comment> commentExisting = commentRepository.findById(commentId);
+        commentRepository.deleteById(commentExisting.get().getCommentId());
         return "Delete commentId success.";
     }
 
