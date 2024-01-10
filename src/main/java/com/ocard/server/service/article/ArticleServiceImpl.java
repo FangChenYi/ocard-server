@@ -29,11 +29,11 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article getArticleById(Integer articleId) {
-        Optional<Article> articleResponse = articleRepository.findById(articleId);
-        if (articleResponse.isPresent()) {
-            return articleResponse.get();
+        Optional<Article> articleExisting = articleRepository.findById(articleId);
+        if (articleExisting.isPresent()) {
+            return articleExisting.get();
         } else {
-            throw new NoSuchElementException("Get method failed: ArticleId not found.");
+            throw new NoSuchElementException("Get method failed: Id not found.");
         }
     }
 
@@ -55,7 +55,7 @@ public class ArticleServiceImpl implements ArticleService {
             article.setDateUpdated(LocalDateTime.now());
             return articleRepository.save(article);
         } else {
-            throw new NoSuchElementException("Update method failed: ArticleId not found.");
+            throw new NoSuchElementException("Update method failed: Id not found.");
         }
     }
 
@@ -66,7 +66,7 @@ public class ArticleServiceImpl implements ArticleService {
             articleRepository.deleteById(articleId);
             return "Delete articleId success.";
         } else {
-            throw new NoSuchElementException("Delete method failed: ArticleId not found.");
+            throw new NoSuchElementException("Delete method failed: Id not found.");
         }
     }
 }
