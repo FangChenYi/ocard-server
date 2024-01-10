@@ -27,9 +27,9 @@ public class SubcategoryServiceImpl implements SubcategoryService {
 
     @Override
     public Subcategory getSubcategoryById(Integer subcategoryId) {
-        Optional<Subcategory> subcategoryResponse = subcategoryRepository.findById(subcategoryId);
-        if (subcategoryResponse.isPresent()) {
-            return subcategoryResponse.get();
+        Optional<Subcategory> subcategoryExisting = subcategoryRepository.findById(subcategoryId);
+        if (subcategoryExisting.isPresent()) {
+            return subcategoryExisting.get();
         } else {
             throw new NoSuchElementException("Get method failed: SubcategoryId not found.");
         }
