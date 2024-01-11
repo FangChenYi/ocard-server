@@ -28,13 +28,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article getArticleById(Integer articleId) {
-        Optional<Article> articleResponse = articleRepository.findById(articleId);
-        if (articleResponse.isPresent()) {
-            return articleResponse.get();
-        } else {
-            throw new NoSuchElementException("Get method failed: ArticleId not found.");
-        }
+    public Article getArticleById(Integer articleId) throws NoSuchElementException {
+        Optional<Article> articleExisting = articleRepository.findById(articleId);
+        return articleExisting.get();
     }
 
     @Override
@@ -45,28 +41,21 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article updateArticle(Integer articleId, UpdateArticleDTO updateArticleDTO) {
+    public Article updateArticle(Integer articleId,
+                                 UpdateArticleDTO updateArticleDTO) throws NoSuchElementException {
         Optional<Article> articleExisting = articleRepository.findById(articleId);
-        if (articleExisting.isPresent()) {
-            Article article = articleMapper.UpdateArticleDTOtoArticle(updateArticleDTO);
-            article.setArticleId(articleId);
-            article.setSubcategory(articleExisting.get().getSubcategory());
-            article.setDatePosted(articleExisting.get().getDatePosted());
-            article.setDateUpdated(LocalDateTime.now());
-            return articleRepository.save(article);
-        } else {
-            throw new NoSuchElementException("Update method failed: ArticleId not found.");
-        }
+        Article article = articleMapper.UpdateArticleDTOtoArticle(updateArticleDTO);
+        article.setArticleId(articleId);
+        article.setSubcategory(articleExisting.get().getSubcategory());
+        article.setDatePosted(articleExisting.get().getDatePosted());
+        article.setDateUpdated(LocalDateTime.now());
+        return articleRepository.save(article);
     }
 
     @Override
-    public String deleteArticle(Integer articleId) {
+    public String deleteArticle(Integer articleId) throws NoSuchElementException {
         Optional<Article> articleExisting = articleRepository.findById(articleId);
-        if (articleExisting.isPresent()) {
-            articleRepository.deleteById(articleId);
-            return "Delete articleId success.";
-        } else {
-            throw new NoSuchElementException("Delete method failed: ArticleId not found.");
-        }
+        articleRepository.deleteById(articleExisting.get().getArticleId());
+        return "Delete articleId success.";
     }
 }

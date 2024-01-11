@@ -25,42 +25,29 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategoryById(Integer categoryId) {
-        Optional<Category> categoryResponse = categoryRepository.findById(categoryId);
-        if (categoryResponse.isPresent()) {
-            return categoryResponse.get();
-        } else {
-            throw new NoSuchElementException("Get method failed: CategoryId not found.");
-        }
+    public Category getCategoryById(Integer categoryId) throws NoSuchElementException {
+        Optional<Category> categoryExisting = categoryRepository.findById(categoryId);
+        return categoryExisting.get();
     }
 
     @Override
     public Category createCategory(CategoryDTO categoryDTO) {
-        Category category=categoryMapper.CategoryDTOtoCategory(categoryDTO);
+        Category category = categoryMapper.CategoryDTOtoCategory(categoryDTO);
         return categoryRepository.save(category);
     }
 
     @Override
     public Category updateCategory(Integer categoryId,
-                                   CategoryDTO categoryDTO) {
-        Optional<Category> categoryExisting = categoryRepository.findById(categoryId);
-        if (categoryExisting.isPresent()) {
-            Category category= categoryMapper.CategoryDTOtoCategory(categoryDTO);
-            category.setCategoryId(categoryId);
-            return categoryRepository.save(category);
-        } else {
-            throw new NoSuchElementException("Update method failed: CategoryId not found.");
-        }
+                                   CategoryDTO categoryDTO) throws NoSuchElementException {
+        Category category = categoryMapper.CategoryDTOtoCategory(categoryDTO);
+        category.setCategoryId(categoryId);
+        return categoryRepository.save(category);
     }
 
     @Override
-    public String deleteCategory(Integer categoryId) {
+    public String deleteCategory(Integer categoryId) throws NoSuchElementException {
         Optional<Category> categoryExisting = categoryRepository.findById(categoryId);
-        if (categoryExisting.isPresent()) {
-            categoryRepository.deleteById(categoryId);
-            return "Delete categoryId success.";
-        } else {
-            throw new NoSuchElementException("Delete method failed: CategoryId not found.");
-        }
+        categoryRepository.deleteById(categoryExisting.get().getCategoryId());
+        return "Delete categoryId success.";
     }
 }
