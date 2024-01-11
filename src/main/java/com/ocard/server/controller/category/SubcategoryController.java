@@ -15,7 +15,7 @@ public class SubcategoryController {
     @Autowired
     private SubcategoryService subcategoryService;
 
-    @GetMapping("/subcategory")
+    @GetMapping("/subcategories")
     public List<Subcategory> getAllSubcategories() {
         return subcategoryService.getAllSubcategories();
     }
