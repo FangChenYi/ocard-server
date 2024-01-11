@@ -17,12 +17,12 @@ public class CommentController {
     private CommentService commentService;
 
     @GetMapping("/comments")
-    public List<Comment> getAllArticles() {
+    public List<Comment> getAllComments() {
         return commentService.getAllComments();
     }
 
     @GetMapping("/comment/{commentId}")
-    public Comment getArticleById(@PathVariable Integer commentId) {
+    public Comment getCommentById(@PathVariable Integer commentId) {
         return commentService.getCommentById(commentId);
     }
 
