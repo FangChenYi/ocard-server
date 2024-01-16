@@ -11,10 +11,13 @@ VALUES ('感情', 1),
        ('女孩', 1),
        ('心理', 1);
 
-INSERT INTO article (title, content, date_posted, subcategory_id)
+INSERT INTO user (username, email, password, registration_date)
+VALUES ('JohnDoe', 'johndoe@example.com', 'hashed_password', '2024-01-16');
+
+INSERT INTO article (title, content, date_posted, subcategory_id, user_id)
 VALUES ('如何處理分手後的情感挫折',
         '分手後的情感處理對每個人都很重要。有些技巧可以幫助你度過這段時期，比如專注於自我成長，尋找支持系統等。',
-        '2023-12-20', 1);
+        '2023-12-20', 1, 1);
 
 INSERT INTO comment (comment_content, date_posted, article_id)
 VALUES ('這是第一則評論', '2023-01-01', 1);
