@@ -1,8 +1,8 @@
 package com.ocard.server.model.article;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ocard.server.dto.user.UserDTO;
 import com.ocard.server.model.category.Subcategory;
-import com.ocard.server.model.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -51,6 +51,6 @@ public class Article {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserDTO userDTO;
 
 }
