@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createUser(CreateUserDTO createUserDTO) {
-        User user = userMapper.createUserDTOtoUserDTO(createUserDTO);
+        User user = userMapper.createUserDTOtoUser(createUserDTO);
         user.setRegistrationDate(LocalDateTime.now());
         userRepository.save(user);
         UserDTO userDTO = userMapper.usertoUserDTO(user);
