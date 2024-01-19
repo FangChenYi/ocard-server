@@ -7,6 +7,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ArticleMapper {
-    Article CreateArticleDTOtoArticle(CreateArticleDTO createArticleDTO);
-    Article UpdateArticleDTOtoArticle(UpdateArticleDTO updateArticleDTO);
+    Article createArticleDTOtoArticle(CreateArticleDTO createArticleDTO);
+    Article updateArticleDTOtoArticle(UpdateArticleDTO updateArticleDTO);
 }

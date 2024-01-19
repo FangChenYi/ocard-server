@@ -9,9 +9,9 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
-    Category CategoryDTOtoCategory(CategoryDTO categoryDTO);
+    Category categoryDTOtoCategory(CategoryDTO categoryDTO);
 
-    Subcategory SubcategoryDTOtoSubcategory(SubcategoryDTO subcategoryDTO);
+    Subcategory subcategoryDTOtoSubcategory(SubcategoryDTO subcategoryDTO);
 
-    Subcategory UpdateSubcategoryDTOtoSubcategory(UpdateSubcategoryDTO updateSubcategoryDTO);
+    Subcategory updateSubcategoryDTOtoSubcategory(UpdateSubcategoryDTO updateSubcategoryDTO);
 }

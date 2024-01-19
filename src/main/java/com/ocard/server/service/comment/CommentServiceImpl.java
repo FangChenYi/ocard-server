@@ -36,7 +36,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment createComment(Integer articleId,
                                  CreateCommentDTO createCommentDTO) {
-        Comment comment = commentMapper.CreateCommentDTOtoComment(createCommentDTO);
+        Comment comment = commentMapper.createCommentDTOtoComment(createCommentDTO);
         comment.setDatePosted(LocalDateTime.now());
         comment.setArticleId(articleId);
         return commentRepository.save(comment);
@@ -47,7 +47,7 @@ public class CommentServiceImpl implements CommentService {
     public Comment updateComment(Integer commentId,
                                  UpdateCommentDTO updateCommentDTO) throws NoSuchElementException {
         Optional<Comment> commentExisting = commentRepository.findById(commentId);
-        Comment comment = commentMapper.UpdateCommentDTOtoComment(updateCommentDTO);
+        Comment comment = commentMapper.updateCommentDTOtoComment(updateCommentDTO);
         comment.setCommentId(commentId);
         comment.setArticleId(commentExisting.get().getArticleId());
         comment.setDatePosted(commentExisting.get().getDatePosted());

@@ -33,7 +33,7 @@ public class SubcategoryServiceImpl implements SubcategoryService {
 
     @Override
     public Subcategory createSubcategory(SubcategoryDTO subcategoryDTO) {
-        Subcategory subcategory = categoryMapper.SubcategoryDTOtoSubcategory(subcategoryDTO);
+        Subcategory subcategory = categoryMapper.subcategoryDTOtoSubcategory(subcategoryDTO);
         return subcategoryRepository.save(subcategory);
     }
 
@@ -41,7 +41,7 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     public Subcategory updateSubcategory(Integer subcategoryId,
                                          UpdateSubcategoryDTO updateSubcategoryDTO) throws NoSuchElementException {
         Optional<Subcategory> subcategoryExisting = subcategoryRepository.findById(subcategoryId);
-        Subcategory subcategory = categoryMapper.UpdateSubcategoryDTOtoSubcategory(updateSubcategoryDTO);
+        Subcategory subcategory = categoryMapper.updateSubcategoryDTOtoSubcategory(updateSubcategoryDTO);
         subcategory.setCategory(subcategoryExisting.get().getCategory());
         subcategory.setSubcategoryId(subcategoryId);
         return subcategoryRepository.save(subcategory);

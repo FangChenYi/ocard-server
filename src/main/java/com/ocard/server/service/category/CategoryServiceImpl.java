@@ -32,14 +32,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category createCategory(CategoryDTO categoryDTO) {
-        Category category = categoryMapper.CategoryDTOtoCategory(categoryDTO);
+        Category category = categoryMapper.categoryDTOtoCategory(categoryDTO);
         return categoryRepository.save(category);
     }
 
     @Override
     public Category updateCategory(Integer categoryId,
                                    CategoryDTO categoryDTO) throws NoSuchElementException {
-        Category category = categoryMapper.CategoryDTOtoCategory(categoryDTO);
+        Category category = categoryMapper.categoryDTOtoCategory(categoryDTO);
         category.setCategoryId(categoryId);
         return categoryRepository.save(category);
     }
