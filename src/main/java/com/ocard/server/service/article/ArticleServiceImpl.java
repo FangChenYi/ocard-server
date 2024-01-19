@@ -35,7 +35,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article createArticle(CreateArticleDTO createArticleDTO) {
-        Article article = articleMapper.CreateArticleDTOtoArticle(createArticleDTO);
+        Article article = articleMapper.createArticleDTOtoArticle(createArticleDTO);
         article.setDatePosted(LocalDateTime.now());
         return articleRepository.save(article);
     }
@@ -44,7 +44,7 @@ public class ArticleServiceImpl implements ArticleService {
     public Article updateArticle(Integer articleId,
                                  UpdateArticleDTO updateArticleDTO) throws NoSuchElementException {
         Optional<Article> articleExisting = articleRepository.findById(articleId);
-        Article article = articleMapper.UpdateArticleDTOtoArticle(updateArticleDTO);
+        Article article = articleMapper.updateArticleDTOtoArticle(updateArticleDTO);
         article.setArticleId(articleId);
         article.setSubcategory(articleExisting.get().getSubcategory());
         article.setDatePosted(articleExisting.get().getDatePosted());
