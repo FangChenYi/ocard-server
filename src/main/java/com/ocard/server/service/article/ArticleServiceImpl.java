@@ -30,8 +30,13 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Article getArticleById(Integer articleId) throws NoSuchElementException {
         Optional<Article> articleExisting = articleRepository.findById(articleId);
-        return articleExisting.get();
+        if (articleExisting.isPresent()) {
+            return articleExisting.get();
+        } else {
+            throw new NoSuchElementException("No article found with id: " + articleId);
+        }
     }
+
 
     @Override
     public Article createArticle(CreateArticleDTO createArticleDTO) {
