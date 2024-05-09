@@ -13,6 +13,6 @@ steps:
       persistCredentials: true
 
   - script: |
-      git remote add azure https://$(System.AccessToken)@dev.azure.com/FangChenYi/_git/ocard-server
+      git remote add azure https://$(System.AccessToken)@dev.azure.com/FangChenYi/ocard-server/_git/ocard-server
       git push azure +refs/remotes/origin/*:refs/heads/*
     displayName: 'Sync GitHub to Azure DevOps'
