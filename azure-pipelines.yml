@@ -6,6 +6,7 @@ pool:
 
 steps:
   - checkout: self
+    fetchTags: true
 
   - checkout:
       repository: FangChenYi/ocard-server
