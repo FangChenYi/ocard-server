@@ -16,10 +16,20 @@ steps:
   - checkout: self
 
   - script: |
+      git config --global user.name "FangChenYi"
+      git config --global user.email "fx1.github@gmail.com"
       git remote add github https://github.com/FangChenYi/ocard-server.git
       git fetch github
       git checkout main
       git pull github main
-       git remote add azure https://dev.azure.com/fx1github/test/_git/test
+    displayName: 'Fetch and pull from GitHub'
+
+  - task: UseGitHubForAzureRepos@1
+    inputs:
+      credentials: FangChenYi  # 這裡替換為你的服務連接名稱
+    displayName: 'Add GitHub credentials'
+
+  - script: |
+      git remote add azure https://dev.azure.com/fx1github/test/_git/test
       git push azure main --force
-    displayName: 'Sync GitHub to Azure DevOps Repos'
+    displayName: 'Sync to Azure DevOps Repos'
