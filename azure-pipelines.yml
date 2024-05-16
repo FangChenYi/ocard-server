@@ -20,6 +20,6 @@ steps:
       git fetch github
       git checkout main
       git pull github main
-      git remote add azure https://dev.azure.com/fx1github/_git/test
+       git remote add azure https://dev.azure.com/fx1github/test/_git/test
       git push azure main --force
     displayName: 'Sync GitHub to Azure DevOps Repos'
