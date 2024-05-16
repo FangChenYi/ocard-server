@@ -1,0 +1,56 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  sonar.projectKey: 'test_test_8a1c51d7-e32e-41af-8167-446a1aada390'
+  sonar.projectName: 'test'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: Docker@2
+  displayName: 'Run SonarQube container'
+  inputs:
+    container: 'sonarqube:latest'
+    options: '--name sonarqube -d -p 9000:9000'
+    azureSubscription: '<YOUR_AZURE_SUBSCRIPTION>'
+    action: 'Run an image'
+
+- script: |
+    echo Waiting for SonarQube to be ready...
+    sleep 30  # 等待 SonarQube 啟動
+  displayName: 'Wait for SonarQube to be ready'
+
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'http://localhost:9000'  # 使用本地 SonarQube
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: '$(sonar.projectKey)'
+    cliProjectName: '$(sonar.projectName)'
+
+- script: |
+    echo Running SonarQube Scanner
+    ./gradlew sonarqube -Dsonar.projectKey=$(sonar.projectKey) -Dsonar.projectName=$(sonar.projectName)
+  displayName: 'Run SonarQube Scanner'
+
+- task: SonarQubeAnalyze@5
+
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
+
+- task: Docker@2
+  displayName: 'Stop SonarQube container'
+  inputs:
+    container: 'sonarqube'
+    action: 'Stop container'
